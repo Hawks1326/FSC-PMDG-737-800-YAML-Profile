@@ -1,6 +1,10 @@
 # PMDG Simulations - Boeing 737NG Series V1.2
 # Created by Hawks1326 and Av8rChris. Special thanks and help from Steeeve and Bennnnnnn!
 master:
+- get: A:GENERAL ENG THROTTLE LEVER POSITION:1, Position 16k
+  set: (>K:THROTTLE1_SET)
+- get: A:GENERAL ENG THROTTLE LEVER POSITION:2, Position 16k
+  set: (>K:THROTTLE2_SET)
 - get: A:ELEVATOR POSITION, Position 16k
   set: "`${value * -1} (>K:AXIS_ELEVATOR_SET)`"
 - get: A:AILERON POSITION, Position 16k
@@ -791,30 +795,26 @@ shared:
 - get: L:switch_2008_73X
   set: 200801 (>K:ROTOR_BRAKE)
 #Throttle Quadrant
+- get: L:switch_683_73X, Number
+- get: L:switch_686_73X, Number
+- get: L:switch_680_73X, Number
+- get: L:switch_681_73X, Number
 - get: L:switch_678_73X, Number
 - get: L:switch_679_73X, Number
 - get: L:switch_714_73X, Number
   set: "`${value * 358.4125 + -14337} (>K:AXIS_FLAPS_SET)`"
 - get: L:switch_682_73X, Number
   set: "`${value * -0.03 + 68204} (>K:ROTOR_BRAKE)`"
-- get: L:switch_683_73X, Number
-  set: "`${Math.max(0, Math.min(16384, (value + 16384) / 2))} (>K:THROTTLE1_SET)`"
 - get: L:switch_684_73X, Number
   set: "`${value * -0.03 + 68404} (>K:ROTOR_BRAKE)`"
 - get: L:switch_685_73X, Number
   set: "`${value * -0.03 + 68504} (>K:ROTOR_BRAKE)`"
-- get: L:switch_686_73X, Number
-  set: "`${Math.max(0, Math.min(16384, (value + 16384) / 2))} (>K:THROTTLE2_SET)`"
 - get: L:switch_687_73X, Number
   set: "`${value * -0.03 + 68704} (>K:ROTOR_BRAKE)`"
 - get: L:switch_688_73X, Number
   set: 68801 (>K:ROTOR_BRAKE)
 - get: L:switch_689_73X, Number
   set: 68901 (>K:ROTOR_BRAKE)
-- get: L:switch_680_73X, Number
-  set: "`${value * 0.01 + 68003} (>K:ROTOR_BRAKE)`"
-- get: L:switch_681_73X, Number
-  set: "`${value * 0.01 + 68103} (>K:ROTOR_BRAKE)`"
 - get: L:switch_693_73X, Number
   set: "`${value * -0.03 + 69304} (>K:ROTOR_BRAKE)`"
 - get: L:switch_709_73X, Number
