@@ -1,4 +1,4 @@
-# PMDG Simulations - Boeing 737NG Series V1.2
+# PMDG Simulations - Boeing 737NG Series V1.5
 # Created by Hawks1326 and Av8rChris. Special thanks and help from Steeeve and Bennnnnnn!
 master:
 - get: A:GENERAL ENG THROTTLE LEVER POSITION:1, Position 16k
@@ -1362,3 +1362,4 @@ shared:
 - get: A:TRANSPONDER STATE:1, Enum
 - get: A:TRANSPONDER IDENT:1, Bool
   set: 1 (>K:XPNDR_IDENT_ON)
+
