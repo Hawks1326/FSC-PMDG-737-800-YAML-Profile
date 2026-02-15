@@ -2,9 +2,7 @@
 # Created by Hawks1326 and Av8rChris. Special thanks and help from Steeeve and Bennnnnnn!
 master:
 - get: A:GENERAL ENG THROTTLE LEVER POSITION:1, Position 16k
-  set: (>K:THROTTLE1_SET)
 - get: A:GENERAL ENG THROTTLE LEVER POSITION:2, Position 16k
-  set: (>K:THROTTLE2_SET)
 - get: A:ELEVATOR POSITION, Position 16k
   set: "`${value * -1} (>K:AXIS_ELEVATOR_SET)`"
 - get: A:AILERON POSITION, Position 16k
@@ -22,8 +20,6 @@ master:
 - get: A:AILERON TRIM PCT, Position 16k
   set: (>K:AILERON_TRIM_SET_EX1)
 - get: A:SPOILERS HANDLE POSITION, Position 16k
-  set: "`${value} (>K:AXIS_SPOILER_SET)`"
-
 shared:
 #AFT OVHD
 - get: L:switch_224_73X, Number
@@ -59,13 +55,13 @@ shared:
 - get: L:switch_299_73X, Number
   set: "`${value > current ? 29902 : 29901} (>K:ROTOR_BRAKE)`"
 - get: L:switch_301_73X, Number
-  set: 30101 (>K:ROTOR_BRAKE)
+  set: "`${value * -0.03 + 30104} (>K:ROTOR_BRAKE)`"
 - get: L:switch_302_73X, Number
-  set: 30201 (>K:ROTOR_BRAKE)
+  set: "`${value * -0.03 + 30204} (>K:ROTOR_BRAKE)`"
 - get: L:switch_303_73X, Number
-  set: 30301 (>K:ROTOR_BRAKE)
+  set: "`${value * -0.03 + 30304} (>K:ROTOR_BRAKE)`"
 - get: L:switch_304_73X, Number
-  set: 30401 (>K:ROTOR_BRAKE)
+  set: "`${value * -0.03 + 30404} (>K:ROTOR_BRAKE)`"
 #FWD OVHD ROW 1
 - get: L:switch_78_73X, Number
   set: "`${value > current ? 7802 : 7801} (>K:ROTOR_BRAKE)`"
@@ -185,7 +181,7 @@ shared:
 - get: L:switch_136_73X, Number
   set: "`${value > current ? 13602 : 13601} (>K:ROTOR_BRAKE)`"
 - get: L:switch_137_73X, Number
-  set: "`${value > current ? 13708 : value < current ? 13707 : ''} (>K:ROTOR_BRAKE)`"
+  set: "`${value > current ? 13701 : value < current ? 13702 : ''} (>K:ROTOR_BRAKE)`"
 - get: L:switch_138_73X, Number
   set: "`${value > current ? 13802 : 13801} (>K:ROTOR_BRAKE)`"
 - get: L:switch_139_73X, Number
@@ -460,7 +456,7 @@ shared:
 - get: L:switch_341_73X, Number
   set: "`${value * -0.03 + 34104} (>K:ROTOR_BRAKE)`"
 - get: L:switch_342_73X, Number
-  set: "`${value > current ? 34208 : value < current ? 34207 : ''} (>K:ROTOR_BRAKE)`"
+  set: "`${value > current ? 34201 : value < current ? 34202 : ''} (>K:ROTOR_BRAKE)`"
 - get: L:switch_346_73X, Number
   set: "`${value > current ? 34608 : value < current ? 34607 : ''} (>K:ROTOR_BRAKE)`"
 - get: L:switch_991_73X, Number
@@ -485,7 +481,7 @@ shared:
 - get: L:switch_467_73X, Number
   set: "`${value} (>K:ROTOR_BRAKE)`"
 - get: L:switch_468_73X, Number
-  set: "`${value > current ? 46808 : value < current ? 46807 : ''} (>K:ROTOR_BRAKE)`"
+  set: "`${value > current ? 46801 : value < current ? 46802 : ''} (>K:ROTOR_BRAKE)`"
 - get: L:switch_464_73X, Number
 - get: L:switch_465_73X, Number
   set: "`${value} (>K:ROTOR_BRAKE)`"
@@ -504,7 +500,7 @@ shared:
 - get: L:switch_441_73X, Number
   set: "`${value > current ? 44101 : value < current ? 44102 : ''} (>K:ROTOR_BRAKE)`"
 - get: L:switch_442_73X, Number
-  set: "`${value > current ? 44208 : value < current ? 44207 : ''} (>K:ROTOR_BRAKE)`"
+  set: "`${value > current ? 44201 : value < current ? 44202 : ''} (>K:ROTOR_BRAKE)`"
 - get: L:switch_443_73X, Number
   set: "`${value * -0.03 + 44304} (>K:ROTOR_BRAKE)`"
 - get: L:switch_444_73X, Number
@@ -857,17 +853,12 @@ shared:
 - get: L:switch_9833_73X, Number
   set: "`${value * -0.03 + 983304} (>K:ROTOR_BRAKE)`"
 #C/FO Yokes
-- get: L:switch_2007_73X
-  set: 200701 (>K:ROTOR_BRAKE)
-- get: L:switch_2008_73X
-  set: 200801 (>K:ROTOR_BRAKE)
+- get: L:switch_1004_73X, Number
+  set: "`${value * -0.03 + 100404} (>K:ROTOR_BRAKE)`"
+- get: L:switch_1005_73X, Number
+  set: "`${value * -0.03 + 100504} (>K:ROTOR_BRAKE)`"
 #Throttle Quadrant
-- get: L:switch_683_73X, Number
-- get: L:switch_686_73X, Number
-- get: L:switch_680_73X, Number
-- get: L:switch_681_73X, Number
 - get: L:switch_678_73X, Number
-- get: L:switch_679_73X, Number
 - get: L:switch_714_73X, Number
   set: "`${value * 358.4125 + -14337} (>K:AXIS_FLAPS_SET)`"
 - get: L:switch_682_73X, Number
