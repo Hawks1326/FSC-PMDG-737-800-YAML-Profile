@@ -1,5 +1,5 @@
-# PMDG Simulations - Boeing 737NG Series V1.6
-# Created by Hawks1326 and Av8rChris. Special thanks and help from Steeeve and Bennnnnnn!
+# PMDG Simulations - Boeing 737NG Series V1.7
+# Created by Hawks1326 and Av8rChris. Special thanks to Dkgolfnut, Yury, Steeeve and Bennnnnnn for their support!!!
 master:
 - get: A:GENERAL ENG THROTTLE LEVER POSITION:1, Position 16k
 - get: A:GENERAL ENG THROTTLE LEVER POSITION:2, Position 16k
@@ -20,7 +20,20 @@ master:
 - get: A:AILERON TRIM PCT, Position 16k
   set: (>K:AILERON_TRIM_SET_EX1)
 - get: L:switch_679_73X, Number
-  set: "`${value} (>L:switch_679_73X)`"
+- get: L:NGXLeftSpoiler_1_var, Number
+- get: L:NGXLeftSpoiler_2_var, Number
+- get: L:NGXLeftSpoiler_3_var, Number
+- get: L:NGXLeftSpoiler_4_var, Number
+- get: L:NGXLeftSpoiler_5_var, Number
+- get: L:NGXLeftSpoiler_6_var, Number
+- get: L:NGXRightSpoiler_7_var, Number
+- get: L:NGXRightSpoiler_8_var, Number
+- get: L:NGXRightSpoiler_9_var, Number
+- get: L:NGXRightSpoiler_10_var, Number
+- get: L:NGXRightSpoiler_11_var, Number
+- get: L:NGXRightSpoiler_12_var, Number
+- get: L:NGXLeftAileron, Number
+- get: L:NGXRightAileron, Number
 
 shared:
 #AFT OVHD
