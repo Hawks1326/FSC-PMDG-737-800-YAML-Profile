@@ -1,4 +1,4 @@
-# PMDG Simulations - Boeing 737NG Series V1.5
+# PMDG Simulations - Boeing 737NG Series V1.6
 # Created by Hawks1326 and Av8rChris. Special thanks and help from Steeeve and Bennnnnnn!
 master:
 - get: A:GENERAL ENG THROTTLE LEVER POSITION:1, Position 16k
@@ -19,7 +19,9 @@ master:
   set: (>K:ELEVATOR_TRIM_SET)
 - get: A:AILERON TRIM PCT, Position 16k
   set: (>K:AILERON_TRIM_SET_EX1)
-- get: A:SPOILERS HANDLE POSITION, Position 16k
+- get: L:switch_679_73X, Number
+  set: "`${value} (>L:switch_679_73X)`"
+
 shared:
 #AFT OVHD
 - get: L:switch_224_73X, Number
@@ -273,7 +275,7 @@ shared:
 - get: L:switch_122_73X, Number
   set: "`${value > current ? 12202 : 12201} (>K:ROTOR_BRAKE)`"
 - get: L:switch_123_73X, Number
-  set: "`${value >= 1 ? 12308 : 12307} (>K:ROTOR_BRAKE)`"
+  set: "`${value > current ? 12308 : value < current ? 12307 : ''} (>K:ROTOR_BRAKE)`"
 - get: L:switch_124_73X, Number
   set: "`${value > current ? 12402 : 12401} (>K:ROTOR_BRAKE)`"
 - get: L:switch_125_73X, Number
@@ -523,8 +525,8 @@ shared:
   set: "`${value * -0.03 + 98304} (>K:ROTOR_BRAKE)`"
 - get: L:switch_9831_73X, Number
   set: "`${value * -0.03 + 983104} (>K:ROTOR_BRAKE)`"
-- get: L:switch_895_73X
-  set: 89501 (>K:ROTOR_BRAKE)
+- get: L:switch_895_73X, Number
+  set: "`${value} (>K:ROTOR_BRAKE)`"
 - get: L:switch_901_73X
   set: 90101 (>K:ROTOR_BRAKE)
 - get: L:switch_319_73X, Number
@@ -840,8 +842,8 @@ shared:
 - get: L:FO_OUTBD_DU_BRIGHT_CONTROL
 - get: L:ngx_windshield_air_right, Bool
 - get: L:ngx_foot_air_right, Bool
-- get: L:switch_896_73X
-  set: 89601 (>K:ROTOR_BRAKE)
+- get: L:switch_896_73X, Number
+  set: "`${value} (>K:ROTOR_BRAKE)`"
 - get: L:switch_902_73X
   set: 90201 (>K:ROTOR_BRAKE)
 - get: L:switch_322_73X, Number
@@ -860,7 +862,7 @@ shared:
 #Throttle Quadrant
 - get: L:switch_678_73X, Number
 - get: L:switch_714_73X, Number
-  set: "`${value * 358.4125 + -14337} (>K:AXIS_FLAPS_SET)`"
+  set: "`${(value * 358.4125) - 14337} (>K:AXIS_FLAPS_SET)`"
 - get: L:switch_682_73X, Number
   set: "`${value * -0.03 + 68204} (>K:ROTOR_BRAKE)`"
 - get: L:switch_684_73X, Number
@@ -926,14 +928,6 @@ shared:
   set: "`${value * -0.03 + 72904} (>K:ROTOR_BRAKE)`"
 - get: L:switch_731_73X, Number
   set: "`${value * -0.03 + 73104} (>K:ROTOR_BRAKE)`"
-- get: L:switch_726_73X, number
-  set: "`${value > current ? 72602 : 72601} (>K:ROTOR_BRAKE)`"
-- get: L:switch_727_73X, number
-  set: "`${value > current ? 72702 : 72701} (>K:ROTOR_BRAKE)`"
-- get: L:switch_732_73X, number
-  set: "`${value > current ? 73202 : 73201} (>K:ROTOR_BRAKE)`"
-- get: L:switch_733_73X, number
-  set: "`${value > current ? 73302 : 73301} (>K:ROTOR_BRAKE)`"
 - get: L:switch_734_73X, Number
   set: "`${value * -0.03 + 73404} (>K:ROTOR_BRAKE)`"
 - get: L:switch_735_73X, Number
@@ -988,12 +982,6 @@ shared:
 - get: L:switch_820_73X
 - get: L:switch_827_73X
   set: 82701 (>K:ROTOR_BRAKE)
-- get: L:switch_822_73X, number
-  set: "`${value > current ? 82202 : 82201} (>K:ROTOR_BRAKE)`"
-- get: L:switch_823_73X, number
-  set: "`${value > current ? 82302 : 82301} (>K:ROTOR_BRAKE)`"
-- get: L:switch_824_73X, number
-  set: "`${value > current ? 82402 : 82401} (>K:ROTOR_BRAKE)`"
 - get: L:switch_812_73X, Number
   set: "`${value * -0.03 + 81204} (>K:ROTOR_BRAKE)`"
 - get: L:switch_813_73X, Number
@@ -1095,16 +1083,8 @@ shared:
 - get: L:switch_800_73X, Number
 - get: L:switch_801_73X, Number
   set: 80101 (>K:ROTOR_BRAKE)
-- get: L:switch_804_73X, Number
-  set: "`${value > current ? 80407 : 80408} (>K:ROTOR_BRAKE)`"
-- get: L:switch_805_73X, Number
-  set: "`${value > current ? 80507 : 80508} (>K:ROTOR_BRAKE)`"
 - get: L:switch_806_73X, Number
   set: 80601 (>K:ROTOR_BRAKE)
-- get: L:switch_807_73X, Number
-  set: "`${value > current ? 80707 : 80708} (>K:ROTOR_BRAKE)`"
-- get: L:switch_808_73X, Number
-  set: "`${value > current ? 80807 : 80808} (>K:ROTOR_BRAKE)`"
 - get: L:switch_810_73X, Number
 - get: L:switch_811_73X, Number
 - get: L:switch_840_73X, Number
@@ -1127,18 +1107,10 @@ shared:
   set: "`${value * -0.03 + 83704} (>K:ROTOR_BRAKE)`"
 - get: L:switch_841_73X, Number
   set: "`${value * -0.03 + 84104} (>K:ROTOR_BRAKE)`"
-- get: L:switch_842_73X, number
-  set: "`${value > current ? 84202 : 84201} (>K:ROTOR_BRAKE)`"
-- get: L:switch_843_73X, number
-  set: "`${value > current ? 84302 : 84301} (>K:ROTOR_BRAKE)`"
 - get: L:switch_847_73X, Number
   set: "`${value * -0.03 + 84704} (>K:ROTOR_BRAKE)`"
 - get: L:switch_845_73X, Number
   set: "`${value * -0.03 + 84504} (>K:ROTOR_BRAKE)`"
-- get: L:switch_848_73X, number
-  set: "`${value > current ? 84802 : 84801} (>K:ROTOR_BRAKE)`"
-- get: L:switch_849_73X, number
-  set: "`${value > current ? 84902 : 84901} (>K:ROTOR_BRAKE)`"
 - get: L:switch_850_73X, Number
   set: "`${value * -0.03 + 85004} (>K:ROTOR_BRAKE)`"
 - get: L:switch_851_73X, Number
@@ -1362,4 +1334,36 @@ shared:
 - get: A:TRANSPONDER STATE:1, Enum
 - get: A:TRANSPONDER IDENT:1, Bool
   set: 1 (>K:XPNDR_IDENT_ON)
-
+- get: A:TRANSPONDER CODE:1, BCO16
+  set: (>K:XPNDR_SET)
+#Cockpit Door
+- get: L:switch_1148_73X
+  set: 114801 (>K:ROTOR_BRAKE)
+#Jumpseat
+- get: L:switch_2001_73X
+  set: 200101 (>K:ROTOR_BRAKE)
+#Jumpseat Mask
+- get: L:switch_983_73X
+  set: 98301 (>K:ROTOR_BRAKE)
+- get: L:switch_9831_73X
+  set: 983101 (>K:ROTOR_BRAKE)
+#Clipboard
+- get: L:switch_1310_73X
+  set: 131001 (>K:ROTOR_BRAKE)
+#Map Lights
+- get: L:maplight_L_drag_h
+- get: L:maplight_L_drag_v
+- get: L:maplight_R_drag_h
+- get: L:maplight_R_drag_v
+- get: L:maplight_O_drag_h
+- get: L:maplight_O_drag_v
+- get: L:chartlight_L_drag_h
+- get: L:chartlight_L_drag_v
+- get: L:chartlight_R_drag_h
+- get: L:chartlight_R_drag_v
+- get: L:switch_2015_73X, Number
+  set: "`${value > current ? 201502 : 201501} (>K:ROTOR_BRAKE)`"
+- get: L:switch_2016_73X, Number
+  set: "`${value > current ? 201602 : 201601} (>K:ROTOR_BRAKE)`"
+- get: L:switch_2017_73X, Number
+  set: "`${value > current ? 201702 : 201701} (>K:ROTOR_BRAKE)`"
