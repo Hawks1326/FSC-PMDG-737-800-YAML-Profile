@@ -34,8 +34,6 @@ master:
 - get: L:NGXRightSpoiler_12_var, Number
 - get: L:NGXLeftAileron, Number
 - get: L:NGXRightAileron, Number
-- get: A:KOHLSMAN SETTING HG, inHg
-- get: A:KOHLSMAN SETTING MB, Millibars
 
 shared:
 #AFT OVHD
@@ -185,7 +183,7 @@ shared:
 - get: L:switch_103_73X, Number
   set: "`${value > current ? 10302 : 10301} (>K:ROTOR_BRAKE)`"
 - get: L:switch_104_73X, Number
-  set: "`${value > current ? 10402 : 10401} (>K:ROTOR_BRAKE)`"
+  set: "`${value > current ? 10408 : 10407} (>K:ROTOR_BRAKE)`"
 - get: L:switch_105_73X, Number
   set: 10501 (>K:ROTOR_BRAKE)
 - get: L:switch_106_73X, Number
@@ -1382,4 +1380,3 @@ shared:
   set: "`${value > current ? 201602 : 201601} (>K:ROTOR_BRAKE)`"
 - get: L:switch_2017_73X, Number
   set: "`${value > current ? 201702 : 201701} (>K:ROTOR_BRAKE)`"
-
