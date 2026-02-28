@@ -1,5 +1,7 @@
-# PMDG Simulations - Boeing 737NG Series V1.7
-# Created by Hawks1326 and Av8rChris. Special thanks to Dkgolfnut, Yury, Steeeve and Bennnnnnn for their support!!!
+# PMDG Simulations - Boeing 737NG Series V1.8
+# Created by Hawks1326 and Av8rChris. Special thanks to Dkgolfnut, Yury, Steeeve, Bennnnnnn, Hurfi, AFL625, and Nathan for their support!!!
+include:
+- modules/FSDT_GSX.yaml
 master:
 - get: A:GENERAL ENG THROTTLE LEVER POSITION:1, Position 16k
 - get: A:GENERAL ENG THROTTLE LEVER POSITION:2, Position 16k
@@ -401,6 +403,8 @@ shared:
   set: 40601 (>K:ROTOR_BRAKE)
 - get: L:switch_407_73X, Number
   set: "`${value > current ? 40702 : 40701} (>K:ROTOR_BRAKE)`"
+- get: L:ngx_VSwindow, Number
+  set: "${Math.round(value) + 10000} (>K:#84138)"
 - get: L:switch_409_73X, Number
 - get: L:ngx_CRSwindowR, Number
   set: (>K:#84133)
@@ -533,6 +537,14 @@ shared:
 - get: L:switch_2073_73X, Number
 - get: L:switch_522_73X, Number
   set: "`${value * -0.03 + 52204} (>K:ROTOR_BRAKE)`"
+#EFB
+- get: L:tablet_vis
+- get: L:tablet_home_btn_CA
+- get: L:tablet_home_btn_FFO
+- get: L:tablet_power_btn_CA
+- get: L:tablet_power_btn_FO
+- get: L:TabletSensorCA
+- get: L:TabletSensorFO
 #LLDU
 - get: L:switch_983_73X, Number
   set: "`${value * -0.03 + 98304} (>K:ROTOR_BRAKE)`"
