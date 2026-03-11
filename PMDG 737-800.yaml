@@ -1,4 +1,4 @@
-# PMDG Simulations - Boeing 737NG Series V1.8
+# PMDG Simulations - Boeing 737NG Series V1.9
 # Created by Hawks1326 and Av8rChris. Special thanks to Dkgolfnut, Yury, Steeeve, Bennnnnnn, Hurfi, AFL625, and Nathan for their support!!!
 include:
 - modules/FSDT_GSX.yaml
@@ -1397,3 +1397,4 @@ shared:
   set: "`${value > current ? 201602 : 201601} (>K:ROTOR_BRAKE)`"
 - get: L:switch_2017_73X, Number
   set: "`${value > current ? 201702 : 201701} (>K:ROTOR_BRAKE)`"
+
