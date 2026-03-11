@@ -21,21 +21,6 @@ master:
   set: (>K:ELEVATOR_TRIM_SET)
 - get: A:AILERON TRIM PCT, Position 16k
   set: (>K:AILERON_TRIM_SET_EX1)
-- get: L:switch_679_73X, Number
-- get: L:NGXLeftSpoiler_1_var, Number
-- get: L:NGXLeftSpoiler_2_var, Number
-- get: L:NGXLeftSpoiler_3_var, Number
-- get: L:NGXLeftSpoiler_4_var, Number
-- get: L:NGXLeftSpoiler_5_var, Number
-- get: L:NGXLeftSpoiler_6_var, Number
-- get: L:NGXRightSpoiler_7_var, Number
-- get: L:NGXRightSpoiler_8_var, Number
-- get: L:NGXRightSpoiler_9_var, Number
-- get: L:NGXRightSpoiler_10_var, Number
-- get: L:NGXRightSpoiler_11_var, Number
-- get: L:NGXRightSpoiler_12_var, Number
-- get: L:NGXLeftAileron, Number
-- get: L:NGXRightAileron, Number
 
 shared:
 #AFT OVHD
@@ -885,7 +870,19 @@ shared:
 - get: L:switch_1005_73X, Number
   set: "`${value * -0.03 + 100504} (>K:ROTOR_BRAKE)`"
 #Throttle Quadrant
-- get: L:switch_678_73X, Number
+- get: L:switch_679_73X, Number
+- get: L:NGXLeftSpoiler_1_var, Number
+- get: L:NGXLeftSpoiler_2_var, Number
+- get: L:NGXLeftSpoiler_3_var, Number
+- get: L:NGXLeftSpoiler_4_var, Number
+- get: L:NGXLeftSpoiler_5_var, Number
+- get: L:NGXLeftSpoiler_6_var, Number
+- get: L:NGXRightSpoiler_7_var, Number
+- get: L:NGXRightSpoiler_8_var, Number
+- get: L:NGXRightSpoiler_9_var, Number
+- get: L:NGXRightSpoiler_10_var, Number
+- get: L:NGXRightSpoiler_11_var, Number
+- get: L:NGXRightSpoiler_12_var, Number
 - get: L:switch_714_73X, Number
   set: "`${(value * 358.4125) - 14337} (>K:AXIS_FLAPS_SET)`"
 - get: L:switch_682_73X, Number
@@ -1106,6 +1103,15 @@ shared:
 - get: L:switch_803_73X
   set: 80301 (>K:ROTOR_BRAKE)
 - get: L:switch_800_73X, Number
+  set: |
+    switch (value) {
+      case 0:  return current > 30 ? '80008 (>K:ROTOR_BRAKE) 80008 (>K:ROTOR_BRAKE) 80008 (>K:ROTOR_BRAKE) 80008 (>K:ROTOR_BRAKE)' : current > 20 ? '80008 (>K:ROTOR_BRAKE) 80008 (>K:ROTOR_BRAKE) 80008 (>K:ROTOR_BRAKE)' : current > 10 ? '80008 (>K:ROTOR_BRAKE) 80008 (>K:ROTOR_BRAKE)' : current > 0 ? '80008 (>K:ROTOR_BRAKE)' : ''
+      case 10: return current > value ? '80008 (>K:ROTOR_BRAKE)' : '80007 (>K:ROTOR_BRAKE)'
+      case 20: return current > value ? current > 30 ? '80008 (>K:ROTOR_BRAKE) 80008 (>K:ROTOR_BRAKE)' : '80008 (>K:ROTOR_BRAKE)' : current < 10 ? '80007 (>K:ROTOR_BRAKE) 80007 (>K:ROTOR_BRAKE)' : '80007 (>K:ROTOR_BRAKE)'
+      case 30: return current > value ? current > 40 ? '80008 (>K:ROTOR_BRAKE) 80008 (>K:ROTOR_BRAKE) 80008 (>K:ROTOR_BRAKE)' : current > 30 ? '80008 (>K:ROTOR_BRAKE) 80008 (>K:ROTOR_BRAKE)' : '80008 (>K:ROTOR_BRAKE)' : current < 10 ? '80007 (>K:ROTOR_BRAKE) 80007 (>K:ROTOR_BRAKE) 80007 (>K:ROTOR_BRAKE)' : current < 20 ? '80007 (>K:ROTOR_BRAKE) 80007 (>K:ROTOR_BRAKE)' : '80007 (>K:ROTOR_BRAKE)'
+      case 40: return current > 20 ? '80007 (>K:ROTOR_BRAKE) 80007 (>K:ROTOR_BRAKE) 80007 (>K:ROTOR_BRAKE) 80007 (>K:ROTOR_BRAKE)' : current > 10 ? '80007 (>K:ROTOR_BRAKE) 80007 (>K:ROTOR_BRAKE) 80007 (>K:ROTOR_BRAKE)' : current > 0 ? '80007 (>K:ROTOR_BRAKE) 80007 (>K:ROTOR_BRAKE)' : '80007 (>K:ROTOR_BRAKE)'
+      default: return ''
+    }
 - get: L:switch_801_73X, Number
   set: 80101 (>K:ROTOR_BRAKE)
 - get: L:switch_806_73X, Number
@@ -1356,7 +1362,6 @@ shared:
   set: (>K:MARKER_BEACON_TEST_MUTE)
 - get: A:MARKER BEACON SENSITIVITY HIGH, Enum
   set: (>K:MARKER_BEACON_SENSITIVITY_HIGH)
-- get: A:TRANSPONDER STATE:1, Enum
 - get: A:TRANSPONDER IDENT:1, Bool
   set: 1 (>K:XPNDR_IDENT_ON)
 - get: A:TRANSPONDER CODE:1, BCO16
