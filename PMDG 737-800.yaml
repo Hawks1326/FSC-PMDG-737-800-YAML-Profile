@@ -293,8 +293,8 @@ shared:
   set: "`${value * -0.03 + 34904} (>K:ROTOR_BRAKE)`"
 - get: L:switch_356_73X, Number
   set: "`${value > current ? 35602 : 35601} (>K:ROTOR_BRAKE)`"
-- get: L:CAMinsKnob, Number
-- get: L:CABaroKnob, Number
+###- get: L:CAMinsKnob, Number
+###- get: L:CABaroKnob, Number
 - get: L:switch_357_73X, Number
   set: "`${value * -0.03 + 35704} (>K:ROTOR_BRAKE)`"
 - get: L:switch_363_73X, Number
@@ -395,8 +395,8 @@ shared:
   set: (>K:#84133)
 - get: L:switch_412_73X, Number
   set: "`${value > current ? 41202 : 41201} (>K:ROTOR_BRAKE)`"
-- get: L:FOMinsKnob, Number
-- get: L:FOBaroKnob, Number
+###- get: L:FOMinsKnob, Number
+###- get: L:FOBaroKnob, Number
 - get: L:switch_413_73X, Number
   set: "`${value * -0.03 + 41304} (>K:ROTOR_BRAKE)`"
 - get: L:switch_419_73X, Number
