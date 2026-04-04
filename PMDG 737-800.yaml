@@ -1,4 +1,4 @@
-# PMDG Simulations - Boeing 737NG Series V2.0
+# PMDG Simulations - Boeing 737NG Series V2.1
 # Created by Hawks1326 and Av8rChris. Special thanks to Dkgolfnut, Yury, Steeeve, Bennnnnnn, Hurfi, AFL625, and Nathan for their support!!!
 include:
 - modules/FSDT_GSX.yaml
@@ -12,6 +12,10 @@ master:
   set: (>K:ELEVATOR_TRIM_SET)
 - get: A:AILERON TRIM PCT, Position 16k
   set: (>K:AILERON_TRIM_SET_EX1)
+- get: A:BRAKE LEFT POSITION EX1, Position 32k
+  set: "`${value - 16384} (>K:AXIS_LEFT_BRAKE_SET)`"
+- get: A:BRAKE RIGHT POSITION EX1, Position 32k
+  set: "`${value - 16384} (>K:AXIS_RIGHT_BRAKE_SET)`"
 
 shared:
 #AFT OVHD
